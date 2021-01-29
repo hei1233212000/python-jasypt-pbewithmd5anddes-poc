@@ -1,0 +1,1 @@
+It is a POC to build the https://github.com/jasypt/jasypt[Java jasypt] like encryptor with PBEWithMD5AndDES algorithm
