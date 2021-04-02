@@ -33,7 +33,9 @@ class PasswordBasedDeterministicEncryptor:
             bytes_to_decrypt = bytes.fromhex(encrypted_text)
             decrypted_text_bytes = self.__create_encryptor().decrypt(bytes_to_decrypt)
             trimmed_decrypted_text_bytes = decrypted_text_bytes.rstrip(b'\2,\1,\3,\4,\5,\6,\7,\0')
-            return trimmed_decrypted_text_bytes.decode(self.__encoding)
+            decrypted_value = trimmed_decrypted_text_bytes.decode(self.__encoding)
+            # backspace would be appended at the end when the length of the original value is multiply by 8
+            return decrypted_value.replace('\b', '')
 
     def __create_encryptor(self):
         hasher = MD5.new()
